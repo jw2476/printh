@@ -1,0 +1,41 @@
+Arguments: 
+  /home/jack/.nvm/versions/node/v14.17.5/bin/node /home/jack/.nvm/versions/node/v14.17.5/bin/yarn init
+
+PATH: 
+  ~/.gradle/gradle-6.7/bin:~/.jdks/openjdk-15/bin:/home/jack/.nvm/versions/node/v14.17.5/bin:/home/jack/.deno/bin:/home/jack/.pyenv/shims:/home/jack/.pyenv/bin/:/home/jack/.pyenv/shims/:/home/jack/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.15
+
+Node version: 
+  14.17.5
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/home/jack/.nvm/versions/node/v14.17.5/lib/node_modules/yarn/lib/cli.js:137145:13)
+      at Interface.emit (events.js:400:28)
+      at Interface._ttyWrite (readline.js:910:16)
+      at ReadStream.onkeypress (readline.js:235:10)
+      at ReadStream.emit (events.js:400:28)
+      at emitKeys (internal/readline/utils.js:358:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1179:36)
+      at ReadStream.emit (events.js:400:28)
+      at addChunk (internal/streams/readable.js:290:12)
+
+npm manifest: 
+  {
+    "name": "kablook",
+    "version": "1.0.0",
+    "main": "server/dist/index.js",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
