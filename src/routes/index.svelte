@@ -1,8 +1,8 @@
 <script lang="ts">
-    import Box from "./components/Box.svelte";
-    import Button from "./components/Button.svelte";
-    import Group from "./components/Group.svelte";
-    import Buttons from "./components/Buttons.svelte";
+    import Box from "../components/Box.svelte";
+    import Button from "../components/Button.svelte";
+    import Group from "../components/Group.svelte";
+    import Buttons from "../components/Buttons.svelte";
     import Icon from "svelte-awesome"
     import {faBrain, faSmile, faUsers} from "@fortawesome/free-solid-svg-icons";
 </script>
