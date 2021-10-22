@@ -3,6 +3,7 @@
 	import Input from '../lib/components/Input.svelte';
 	import Button from '../lib/components/Button.svelte';
 	import { goto } from '$app/navigation';
+	import {token as tokenStore} from "$lib/stores"
 	import md5 from "md5"
 	import { browser } from '$app/env';
 
@@ -33,9 +34,11 @@
 		switch (res.status) {
 			case 200: {
 				const {token} = await res.json()
-				if (browser) // Will always be true
+				if (browser) {
 					localStorage.setItem("token", token)
-				localStorage.setItem("loginSuccess", JSON.stringify(true))
+					tokenStore.set(token)
+					localStorage.setItem("loginSuccess", JSON.stringify(true))
+				}
 
 				goto("/")
 				break;

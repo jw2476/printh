@@ -6,6 +6,7 @@
 	import Icon from 'svelte-awesome';
 	import { faBrain, faSmile, faUsers } from '@fortawesome/free-solid-svg-icons';
 	import { browser } from '$app/env';
+	import { token } from '$lib/stores';
 	import Notification from '../lib/components/Notification.svelte';
 
 	let signUpSuccess, loginSuccess = false;
@@ -30,8 +31,13 @@
 	<p class='text-7xl text-center text-white'>Printh</p>
 	<p class='text-3xl text-center text-indigo-100'>A fun and educational quiz game</p>
 	<Buttons>
-		<Button href='/login'>Login</Button>
-		<Button href='/signup'>Sign Up</Button>
+		{#if !$token}
+			<Button href='/login'>Login</Button>
+			<Button href='/signup'>Sign Up</Button>
+		{:else}
+			<Button href='/host'>Host Game</Button>
+			<Button href='/join'>Join Game</Button>
+		{/if}
 	</Buttons>
 </Box>
 <Group>

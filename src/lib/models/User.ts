@@ -1,6 +1,6 @@
 import type {Document} from "mongoose";
-import {Schema, model} from "mongoose"
-import "$lib/db"
+import mongoose from "mongoose"
+const {Schema, model} = mongoose
 
 type IUserBase = {
   username: string,

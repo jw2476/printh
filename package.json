@@ -2,7 +2,7 @@
 	"name": "printh",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "svelte-kit dev",
+		"dev": "nodemon",
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
@@ -44,6 +44,9 @@
 		"jsonwebtoken": "^8.5.1",
 		"md5": "^2.3.0",
 		"mongoose": "^6.0.11",
+		"nodemon": "^2.0.14",
+		"socket.io": "^4.3.1",
+		"socket.io-client": "^4.3.2",
 		"svelte-awesome": "^2.4.2"
 	}
 }
