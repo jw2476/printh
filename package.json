@@ -2,7 +2,7 @@
 	"name": "printh",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "nodemon",
+		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
@@ -20,7 +20,6 @@
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.2.1",
-		"nodemon": "^2.0.14",
 		"postcss": "^8.3.9",
 		"postcss-load-config": "^3.1.0",
 		"prettier": "^2.4.1",
@@ -36,7 +35,15 @@
 	"dependencies": {
 		"@fortawesome/free-solid-svg-icons": "^5.15.4",
 		"@types/express": "^4.17.13",
+		"@types/jsonwebtoken": "^8.5.5",
+		"@types/mongoose": "^5.11.97",
+		"axios": "^0.23.0",
+		"body-parser": "^1.19.0",
+		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
+		"md5": "^2.3.0",
+		"mongoose": "^6.0.11",
 		"svelte-awesome": "^2.4.2"
 	}
 }

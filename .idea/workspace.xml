@@ -4,24 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fe056a8-d14f-4b16-a633-401a67937e3e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/nodemon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/postcss.config.cjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/global.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/rollup.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/global.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/tailwind.config.cjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+    <list default="true" id="1f1a2612-6c56-42aa-aa86-ca3e24856995" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/Request.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/components/Button.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/components/Buttons.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/components/Input.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/components/Notification.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/db.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/models/User.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/stores.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/api/auth/login.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/api/auth/signup.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/login.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/signup.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodemon.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Box.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/Box.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Buttons.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Group.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/Group.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/svelte.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/svelte.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,15 +43,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Home" />
+        <option value="signup" />
+        <option value="Input" />
+        <option value="Notification" />
         <option value="TypeScript File" />
+        <option value="login" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1zghGmXeOnmMjrfvbvWiuWI4zWk" />
+  <component name="ProjectId" id="1zpM1PoQkBdSgFhaNbeMQbWEcvl" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
@@ -49,42 +64,37 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src" />
+    <property name="javascript.nodejs.core.library.configured.version" value="16.7.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="16.7.0" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.nvm/versions/node/v14.17.5/bin" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v16.7.0/bin/node" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/client/node_modules/prettier" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/old_client/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="use.deno.dismiss" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/src/routes" />
-      <recent name="$PROJECT_DIR$/client/src" />
+      <recent name="$PROJECT_DIR$/src/lib" />
+      <recent name="$PROJECT_DIR$/src/routes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3fe056a8-d14f-4b16-a633-401a67937e3e" name="Changes" comment="" />
-      <created>1634575544684</created>
+      <changelist id="1f1a2612-6c56-42aa-aa86-ca3e24856995" name="Changes" comment="" />
+      <created>1634840365614</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1634575544684</updated>
-      <workItem from="1634575545759" duration="3341000" />
-      <workItem from="1634580917857" duration="871000" />
-      <workItem from="1634657167586" duration="2164000" />
-      <workItem from="1634749121076" duration="65000" />
-      <workItem from="1634751125327" duration="2261000" />
-      <workItem from="1634831578298" duration="3251000" />
+      <updated>1634840365614</updated>
+      <workItem from="1634840366870" duration="2470000" />
+      <workItem from="1634842926169" duration="1373000" />
+      <workItem from="1634896606999" duration="7225000" />
     </task>
     <servers />
   </component>
