@@ -5,8 +5,8 @@ const { ObjectId } = Schema.Types;
 
 type IGameBase = {
 	owner: IUser | string
-	players: Array<IUser> | Array<string>
-	code: number
+	players: Array<IUser | string>
+	code: string
 }
 
 export type IGame = IGameBase & Document

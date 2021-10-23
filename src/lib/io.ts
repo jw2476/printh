@@ -30,15 +30,12 @@ io.on("connect", (socket: Socket) => {
 			ownedGame.deleteOne()
 		}
 
-		// Leave any current games and notify owner
+		// Leave any current games
 		const currentGames: IGame[] = await Game.find({players: userID})
 		for (const currentGame of currentGames) {
 			let idx = currentGame.players.indexOf(userID)
 			currentGame.players.splice(idx, 1)
 			await currentGame.save()
-
-			const ownerSocket = getSocket(currentGame.owner._id)
-			ownerSocket?.emit("playerLeft", user.username)
 		}
 	})
 })

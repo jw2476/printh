@@ -5,37 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f1a2612-6c56-42aa-aa86-ca3e24856995" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/nodemon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/auth/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/auth/login.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/auth/signup.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/host/generateCode.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/host/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/io.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/models/Game.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/sockets.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/host.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/join.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/waitingRoom.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.cjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/printh.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/printh.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/host/players.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/host/startGame.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/game.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/Request.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/auth.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/db.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/models/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/host/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/host/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/joinGame.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/joinGame.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/io.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/io.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/models/Game.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/models/Game.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/stores.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/stores.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/api/auth/login.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/api/auth/signup.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/host.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/host.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/login.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/login.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/svelte.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/svelte.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/waitingRoom.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/waitingRoom.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +34,7 @@
         <option value="join" />
         <option value="waitingRoom" />
         <option value="TypeScript File" />
+        <option value="game" />
       </list>
     </option>
   </component>
@@ -111,7 +93,8 @@
       <workItem from="1634840366870" duration="2470000" />
       <workItem from="1634842926169" duration="1373000" />
       <workItem from="1634896606999" duration="15768000" />
-      <workItem from="1634926065933" duration="319000" />
+      <workItem from="1634926065933" duration="975000" />
+      <workItem from="1634984923242" duration="1451000" />
     </task>
     <servers />
   </component>

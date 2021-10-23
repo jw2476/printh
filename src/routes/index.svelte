@@ -8,15 +8,20 @@
 	import { browser } from '$app/env';
 	import { token } from '$lib/stores';
 	import Notification from '../lib/components/Notification.svelte';
+	import { onMount } from 'svelte';
 
 	let signUpSuccess, loginSuccess = false;
-	if (browser) {
-		signUpSuccess = JSON.parse(localStorage.getItem('signUpSuccess'));
-		loginSuccess = JSON.parse(localStorage.getItem('loginSuccess'));
 
-		localStorage.setItem('signUpSuccess', JSON.stringify(false));
-		localStorage.setItem('loginSuccess', JSON.stringify(false));
-	}
+	onMount(() => {
+		if (browser) {
+			signUpSuccess = JSON.parse(localStorage.getItem('signUpSuccess'));
+			loginSuccess = JSON.parse(localStorage.getItem('loginSuccess'));
+			token.set(localStorage.getItem('token'))
+
+			localStorage.setItem('signUpSuccess', JSON.stringify(false));
+			localStorage.setItem('loginSuccess', JSON.stringify(false));
+		}
+	})
 </script>
 
 <Notification bind:value={signUpSuccess} colour='green'>

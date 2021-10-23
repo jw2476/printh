@@ -1,5 +1,11 @@
 <script>
 	import Box from '../lib/components/Box.svelte';
+	import { socket } from '../lib/stores';
+	import { goto } from '$app/navigation';
+
+	$socket?.on("startGame", () => {
+		goto("/game")
+	})
 </script>
 
 <Box>
