@@ -1,4 +1,0 @@
-{
-  "ext": "svelte, ts",
-  "exec": "yarn build && node build"
-}
