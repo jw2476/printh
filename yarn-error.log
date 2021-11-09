@@ -1,0 +1,49 @@
+Arguments: 
+  /home/jack/.nvm/versions/node/v16.7.0/bin/node /home/jack/.nvm/versions/node/v16.7.0/bin/yarn run install
+
+PATH: 
+  ~/.gradle/gradle-6.7/bin:~/.jdks/openjdk-15/bin:/home/jack/.nvm/versions/node/v16.7.0/bin:/home/jack/.deno/bin:/home/jack/.pyenv/shims:/home/jack/.pyenv/bin/:/home/jack/.pyenv/shims/:/home/jack/Projects/printh/node_modules/.bin:/home/jack/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.7.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/jack/Projects/printh/package.json: Unexpected token } in JSON at position 322
+      at JSON.parse (<anonymous>)
+      at /home/jack/.nvm/versions/node/v16.7.0/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/home/jack/.nvm/versions/node/v16.7.0/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/jack/.nvm/versions/node/v16.7.0/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "printh",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server/dists/index.js",
+    "scripts": {
+      "dev": "concurrently 'npm run server' 'npm run client'",
+      "server": "cd server && npm run dev",
+      "client": "cd client && npm run dev",
+      "install": "cd client && yarn && cd ../server && yarn",
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "concurrently": "^6.3.0",
+      "nodemon": "^2.0.14"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -2,7 +2,7 @@
   "name": "printh",
   "version": "1.0.0",
   "description": "",
-  "main": "server/dists/index.js",
+  "main": "server/dist/index.js",
   "scripts": {
     "dev": "concurrently 'npm run server' 'npm run client'",
     "server": "cd server && npm run dev",
@@ -13,6 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^6.3.0",
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.15"
   }
 }
