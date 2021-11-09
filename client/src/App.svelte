@@ -5,6 +5,7 @@
 	import Login from './Login.svelte';
 	import SignUp from './SignUp.svelte';
 	import { authenticated } from '$lib/stores.js';
+	import HostGame from './HostGame.svelte';
 </script>
 
 
@@ -16,12 +17,16 @@
 		{#if !$authenticated}
 			<Button onClick={() => route.set("login")}>Login</Button>
 			<Button onClick={() => route.set("signup")}>Sign Up</Button>
+		{:else}
+			<Button onClick={() => route.set("hostGame")}>Host a Game</Button>
 		{/if}
 	</Box>
 {:else if $route === "login"}
 	<Login />
 {:else if $route === "signup"}
 	<SignUp />
+{:else if $route === "hostGame"}
+	<HostGame />
 {/if}
 
 <style global='true'>

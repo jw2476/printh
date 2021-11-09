@@ -1,8 +1,9 @@
-import auth from "./auth/index.js"
+import { auth } from './auth/index.js'
 import {Router} from "express";
+import { createGame } from './createGame.js';
 
-const router = Router()
+export const api = Router()
 
-router.use("/auth", auth)
+api.use("/auth", auth)
+api.get("/createGame", createGame)
 
-export default auth

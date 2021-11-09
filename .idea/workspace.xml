@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f1a2612-6c56-42aa-aa86-ca3e24856995" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/io/Socket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/printh.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/printh.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/HostGame.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/createGame.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/rollup.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/lib/stores.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/lib/stores.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/auth/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/auth/login.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/auth/signup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/auth/signup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/api/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/auth/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +29,7 @@
         <option value="join" />
         <option value="waitingRoom" />
         <option value="game" />
+        <option value="HostGame" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -100,7 +92,7 @@
       <workItem from="1634896606999" duration="15768000" />
       <workItem from="1634926065933" duration="975000" />
       <workItem from="1634984923242" duration="1451000" />
-      <workItem from="1636485352921" duration="4159000" />
+      <workItem from="1636485352921" duration="6426000" />
     </task>
     <servers />
   </component>
