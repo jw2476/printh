@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f1a2612-6c56-42aa-aa86-ca3e24856995" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/HostGame.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/createGame.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/JoinGame.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/common/Message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/Game.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/HostGame.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/HostGame.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Login.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Login.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/SignUp.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/SignUp.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/lib/stores.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/lib/stores.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/api/createGame.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/createGame.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/io/Socket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/io/Socket.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +37,7 @@
         <option value="game" />
         <option value="HostGame" />
         <option value="TypeScript File" />
+        <option value="JoinGame" />
       </list>
     </option>
   </component>
@@ -93,6 +100,7 @@
       <workItem from="1634926065933" duration="975000" />
       <workItem from="1634984923242" duration="1451000" />
       <workItem from="1636485352921" duration="6426000" />
+      <workItem from="1636734805093" duration="6390000" />
     </task>
     <servers />
   </component>

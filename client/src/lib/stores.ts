@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 export const route = writable("index")
 export const authenticated = writable(false)
+export const socket = writable()
 
 authenticated.set(!!Cookies.get("token"))
 route.subscribe(_ => { // Update authenticated on page change

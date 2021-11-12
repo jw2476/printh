@@ -32,7 +32,7 @@
             return
         }
 
-        const res = await fetch("/api/signup", {
+        const res = await fetch("/api/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
