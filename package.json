@@ -6,7 +6,7 @@
     "dev": "concurrently 'npm run server' 'npm run client'",
     "server": "cd server && npm run dev",
     "client": "cd client && npm run dev",
-    "build": "cd client && npm i && npm run build && cd ../server && npm i && npm run build",
+    "build": "cd client && yarn && npm run build && cd ../server && yarn && npm run build",
     "start": "cd server && node ."
   },
   "keywords": [],
