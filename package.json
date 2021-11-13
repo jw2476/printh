@@ -2,11 +2,12 @@
   "name": "printh",
   "version": "1.0.0",
   "description": "",
-  "main": "server/dist/index.js",
   "scripts": {
     "dev": "concurrently 'npm run server' 'npm run client'",
     "server": "cd server && npm run dev",
-    "client": "cd client && npm run dev"
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "start": "cd server && node ."
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,8 @@
   "dependencies": {
     "concurrently": "^6.3.0",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
   }
 }

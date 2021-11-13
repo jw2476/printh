@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "build": "npx tsc",
+    "start": "node ."
   },
   "author": "",
   "license": "ISC",

@@ -65,9 +65,7 @@ export class Socket implements ISocket {
 			game.players = game.players.filter(player => player._id.toString() !== this.user?._id.toString())
 			await game.save()
 
-			console.log(game.players)
-
-			userIDToSocket[game.host._id].ws.emit('updatePlayers', game.players)
+			userIDToSocket[game.host._id]?.ws.emit('updatePlayers', game.players)
 		})
 	}
 }

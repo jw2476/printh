@@ -13,7 +13,7 @@
 
 	socket.set(io());
 
-	authenticated.subscribe(authed => {
+	authenticated.subscribe((authed) => {
 		if (authed)
 			$socket.emit('auth', Cookies.get('token'));
 	});

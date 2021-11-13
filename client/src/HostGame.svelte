@@ -24,7 +24,7 @@
 <Box>
 	<div class='grid grid-cols-5 gap-4'>
 		{#each players as player}
-			<div class='text text-white border border-gray-900 rounded-md p-4'>{player.username}</div>
+			<div class='text text-white border border-gray-900 rounded-md p-4 shadow-lg'>{player.username}</div>
 		{/each}
 	</div>
 </Box>
