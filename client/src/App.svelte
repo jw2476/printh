@@ -9,6 +9,7 @@
 	import io from 'socket.io-client';
 	import Cookies from 'js-cookie';
 	import JoinGame from './JoinGame.svelte';
+	import Game from './Game.svelte';
 
 
 	socket.set(io());
@@ -41,6 +42,8 @@
 	<HostGame />
 {:else if $route === "joinGame"}
 	<JoinGame />
+{:else if $route === "game"}
+	<Game/>
 {/if}
 
 <style global='true'>

@@ -5,7 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f1a2612-6c56-42aa-aa86-ca3e24856995" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/Game.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/io/ISocket.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/io/startGame.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/printh.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/printh.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/HostGame.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/HostGame.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/JoinGame.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/JoinGame.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/lib/stores.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/lib/stores.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/io/Socket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/io/Socket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +39,9 @@
         <option value="waitingRoom" />
         <option value="game" />
         <option value="HostGame" />
-        <option value="TypeScript File" />
         <option value="JoinGame" />
+        <option value="TypeScript File" />
+        <option value="Game" />
       </list>
     </option>
   </component>
@@ -61,7 +77,7 @@
     <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v16.7.0/bin/node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="use.deno.dismiss" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -89,7 +105,8 @@
       <workItem from="1634984923242" duration="1451000" />
       <workItem from="1636485352921" duration="6426000" />
       <workItem from="1636734805093" duration="6390000" />
-      <workItem from="1636802685355" duration="2555000" />
+      <workItem from="1636802685355" duration="3354000" />
+      <workItem from="1636830225622" duration="3049000" />
     </task>
     <servers />
   </component>

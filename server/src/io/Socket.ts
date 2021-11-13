@@ -4,18 +4,14 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { Message } from '../common/Message.js';
 import { Game } from '../models/Game.js';
+import { ISocket, userIDToSocket } from './ISocket.js';
+import { startGame } from './startGame.js';
 
 dotenv.config()
 const {
 	SECRET
 } = process.env
 
-export interface ISocket {
-	ws: WebSocket
-	user: IUser
-}
-
-export const userIDToSocket: Record<string, Socket> = {}
 
 export class Socket implements ISocket {
 	ws: WebSocket;
@@ -55,8 +51,10 @@ export class Socket implements ISocket {
 			game.players.push(this.user)
 			await game.save()
 
-			userIDToSocket[game.host._id].ws.emit('updatePlayers', game.players)
+			userIDToSocket[game.host._id]?.ws.emit('updatePlayers', game.players)
 		})
+
+		ws.on('startGame', async () => { await startGame(this) })
 
 		ws.on('disconnect', async () => {
 			const game = await Game.findOne({ players: this.user?._id }).populate('players')

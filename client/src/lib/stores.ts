@@ -9,3 +9,12 @@ authenticated.set(!!Cookies.get("token"))
 route.subscribe(_ => { // Update authenticated on page change
 	authenticated.set(!!Cookies.get("token"))
 })
+
+// Fancy back button code
+route.subscribe(r => {
+	window.history.pushState(r, "", "/")
+})
+
+window.addEventListener("popstate", (e) => {
+	route.set(e.state)
+})
