@@ -6,6 +6,7 @@ import { Message } from '../common/Message.js';
 import { Game } from '../models/Game.js';
 import { ISocket, userIDToSocket } from './ISocket.js';
 import { startGame } from './startGame.js';
+import { playerMove } from './playerMove.js';
 
 dotenv.config()
 const {
@@ -55,6 +56,8 @@ export class Socket implements ISocket {
 		})
 
 		ws.on('startGame', async () => { await startGame(this) })
+
+		ws.on("playerMove", async (payload) => { await playerMove(this, payload) })
 
 		ws.on('disconnect', async () => {
 			const game = await Game.findOne({ players: this.user?._id }).populate('players')
