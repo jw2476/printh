@@ -32,6 +32,7 @@
 		{:else}
 			<Button onClick={() => route.set("hostGame")}>Host a Game</Button>
 			<Button onClick={() => route.set("joinGame")}>Join a Game</Button>
+			<!-- <Button onClick={() => route.set("game")}>Test</Button> -->
 		{/if}
 	</Box>
 {:else if $route === "login"}

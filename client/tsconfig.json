@@ -6,7 +6,10 @@
     "paths": {
       "$lib/*": ["src/lib/*"]
     },
-    "strict": true
+    "strict": true,
+    "typeRoots": [
+      "../node_modules/phaser/types"
+    ]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"]

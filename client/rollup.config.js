@@ -44,7 +44,7 @@ export default {
 		commonjs(),
 		typescript({
 			sourceMap: !production,
-			inlineSources: !production
+			inlineSources: !production,
 		}),
 
 		// Watch the `public` directory and refresh the
