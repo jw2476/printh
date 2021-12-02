@@ -37,37 +37,45 @@ export class PlayerTile implements GridTile {
         grid.push(this)
 
         socketVal.on("playerMove", ({username, x, y}) => {
-            if (username === this.username) {
-                this.pos.x = x
-                this.pos.y = y
+            if (username === this.username && !interactive) { // If this player and its not the client's player as that would already be handled
+                this.move({x, y})
             }
         })
     }
 
     update() { 
         if (this.interactive) {
-            if (this.w.isDown) this.move({y: -1})
-            if (this.a.isDown) this.move({x: -1})
-            if (this.s.isDown) this.move({y: 1})
-            if (this.d.isDown) this.move({x: 1})
+            if (this.w.isDown) this.move({x: this.pos.x, y: this.pos.y - 1})
+            if (this.a.isDown) this.move({x: this.pos.x - 1, y: this.pos.y})
+            if (this.s.isDown) this.move({x: this.pos.x, y: this.pos.y + 1})
+            if (this.d.isDown) this.move({x: this.pos.x + 1, y: this.pos.y})
         }
     }
 
-    move(d: {x?: number, y?: number}) {
+    move(pos: {x: number, y: number}) {
         if (!this.movementLock) {
             this.movementLock = true
             setTimeout(() => {this.movementLock = false}, MOVEMENT_LOCK_TIME)
+
+            const d = {
+                x: pos.x - this.pos.x,
+                y: pos.y - this.pos.y
+            } // Get position delta
+    
+            if (this.interactive) {
+                socketVal.emit("playerMove", {username: this.username, x: pos.x, y: pos.y})
+            }    
+
             let frames = 0
+            const NUM_FRAMES = 16
             const updateID = setInterval(() => {
-                if (d.x) this.pos.x += d.x / 8 // Move player by eighth of total movement (change in x / interval(8))
-                if (d.y) this.pos.y += d.y / 8
+                if (d.x) this.pos.x += d.x / NUM_FRAMES // Move player by eighth of total movement (change in x / interval)
+                if (d.y) this.pos.y += d.y / NUM_FRAMES
 
-                socketVal.emit("playerMove", {username: this.username, x: this.pos.x, y: this.pos.y})
-
-                if (++frames === 8) { // Used for animations and to stop the movement
+                if (++frames === NUM_FRAMES) { // Used for animations and to stop the movement
                     clearInterval(updateID)
                 }
-            }, MOVEMENT_LOCK_TIME / 8)
+            }, MOVEMENT_LOCK_TIME / NUM_FRAMES)
         }
     };
 }
