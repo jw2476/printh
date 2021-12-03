@@ -10,7 +10,7 @@
     "start": "cd server && node ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Jw2476",
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.8",
