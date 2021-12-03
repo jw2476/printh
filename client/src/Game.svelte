@@ -2,50 +2,48 @@
 	// UI
 	import Box from '$lib/Box.svelte';
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
-
-	// Other
-	import Cookies from 'js-cookie';
 
 	// Internal game stuff
-	import { Key } from "$lib/input/Key"
-	import { GRID_SIZE, GridTile, GridTileType, grid } from '$lib/map/Grid';
+	import { Entity, GRID_SIZE } from '$lib/map/Entity';
+	import { Player } from '$lib/map/Player';
+	import { Backgroud } from '$lib/map/Background';
+	import { TILE_WIDTH } from '$lib/Camera';
+	import { World } from '$lib/map/World';
+
 
 	// PIXI
 	import { Application, Sprite } from 'pixi.js';
-	import { PlayerTile } from '$lib/map/PlayerTile';
-
 
 	let parent: HTMLElement;
 	let app: Application;
 
+	let world: World
+
 	onMount(async () => {
 		// Init PIXI window
 		app = new Application({
-			width: 64 * GRID_SIZE,
-			height: 64 * GRID_SIZE
+			width: TILE_WIDTH * GRID_SIZE,
+			height: TILE_WIDTH * GRID_SIZE
 		});
 		parent.appendChild(app.view);
 		app.renderer.backgroundColor = 0xFFFFFF;
 
+		world = new World(app)
+
+		// Create background
+		const bkg = new Backgroud(app, TILE_WIDTH * GRID_SIZE);
+		world.add(app, bkg)
+
 		// Create player
 		const {username} = await fetch("/api/auth/username").then(res => res.json())
-		const player = new PlayerTile(app, true, username)
+		const player = new Player(app, true, username)
+		world.add(app, player)
 
 		// Load other players
 		let otherPlayers = await fetch("/api/game/players").then(res => res.json())
 		for (const username of otherPlayers) {
-			grid.push(new PlayerTile(app, false, username))
+			world.add(app, new Player(app, false, username))
 		}
-
-		app.ticker.add((delta) => {
-			grid.forEach((tile) => {
-				tile.update()
-				
-				tile.sprite.x = 64 * tile.pos.x
-				tile.sprite.y = 64 * tile.pos.y
-			})
-		})
 	});
 </script>
 

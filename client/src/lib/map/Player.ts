@@ -1,17 +1,17 @@
 import { Key } from "$lib/input/Key";
 import { Application, Sprite } from "pixi.js";
-import { grid, GridTile, GridTileType } from "./Grid";
-import { writable } from 'svelte/store';
+import { EntityType, Entity } from "./Entity";
 import { Text } from "pixi.js";
 import { socketVal } from "$lib/stores";
+import { TILE_WIDTH } from "$lib/Camera";
 
 const MOVEMENT_LOCK_TIME = 250;
 
 
-export class PlayerTile implements GridTile {
+export class Player implements Entity {
     pos = {x: 0, y: 0}
     sprite = Sprite.from('/favicon.png')
-    readonly tileType = GridTileType.Player
+    readonly tileType = EntityType.Player
 
     interactive: boolean
     username: string
@@ -30,12 +30,9 @@ export class PlayerTile implements GridTile {
         this.interactive = interactive
         this.username = username
 
-        app.stage.addChild(this.sprite)
         let text = new Text(username)
         this.sprite.addChild(text)
-
-        grid.push(this)
-
+        
         socketVal.on("playerMove", ({username, x, y}) => {
             if (username === this.username && !interactive) { // If this player and its not the client's player as that would already be handled
                 this.move({x, y})
@@ -45,10 +42,10 @@ export class PlayerTile implements GridTile {
 
     update() { 
         if (this.interactive) {
-            if (this.w.isDown) this.move({x: this.pos.x, y: this.pos.y - 1})
-            if (this.a.isDown) this.move({x: this.pos.x - 1, y: this.pos.y})
-            if (this.s.isDown) this.move({x: this.pos.x, y: this.pos.y + 1})
-            if (this.d.isDown) this.move({x: this.pos.x + 1, y: this.pos.y})
+            if (this.w.isDown) this.move({x: this.pos.x, y: this.pos.y - TILE_WIDTH})
+            if (this.a.isDown) this.move({x: this.pos.x - TILE_WIDTH, y: this.pos.y})
+            if (this.s.isDown) this.move({x: this.pos.x, y: this.pos.y + TILE_WIDTH})
+            if (this.d.isDown) this.move({x: this.pos.x + TILE_WIDTH, y: this.pos.y})
         }
     }
 
