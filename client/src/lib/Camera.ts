@@ -14,10 +14,14 @@ export class Camera {
         this.pos = pos
     }
 
+    isPositionViewed(pos: Position): boolean {
+        const viewedX = this.pos.x <= pos.x && pos.x < this.pos.x + SCREEN_WIDTH
+        const viewedY = this.pos.y <= pos.y && pos.y < this.pos.y + SCREEN_HEIGHT
+        return viewedX && viewedY
+    }
+
     render(app: Application, world: Entity[]) {
         world.forEach(e => {
-            e.update()
-
             e.sprite.x = e.pos.x - this.pos.x
             e.sprite.y = e.pos.y - this.pos.y
         })

@@ -1,5 +1,6 @@
 import type { Position } from "$lib/Position"
 import type { Sprite } from "pixi.js"
+import type { World } from "./World"
 
 export const GRID_SIZE = 10
 
@@ -14,5 +15,5 @@ export interface Entity {
     pos: Position
     sprite: Sprite
 
-    update(): void
+    update(world: World): void
 }

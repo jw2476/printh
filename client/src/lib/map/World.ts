@@ -5,17 +5,22 @@ import type { Entity } from "./Entity";
 export class World {
     entities: Entity[] = []
     camera = new Camera({x: 0, y: 0})
+    app: Application
 
     constructor(app: Application) {
+        this.app = app
+
         const update = () => {
-            this.camera.render(app, this.entities)
+            this.entities.forEach(e => e.update(this))
+
+            this.camera.render(this.app, this.entities)
             console.log("test")
         }
-        app.ticker.add(update.bind(this))
+        this.app.ticker.add(update.bind(this))
     }
 
-    add(app: Application, e: Entity) {
+    add(e: Entity) {
         this.entities.push(e)
-        app.stage.addChild(e.sprite)
+        this.app.stage.addChild(e.sprite)
     }
 }

@@ -1,5 +1,6 @@
 import { Application, Sprite } from "pixi.js";
 import { Entity, EntityType } from "./Entity";
+import type { World } from "./World";
 
 export class Backgroud implements Entity {
     tileType = EntityType.Backgroud;
@@ -11,7 +12,7 @@ export class Backgroud implements Entity {
         this.sprite.height = size
     }
 
-    update(): void {
+    update(_: World): void {
         return
     }
     

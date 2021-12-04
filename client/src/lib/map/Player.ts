@@ -3,7 +3,9 @@ import { Application, Sprite } from "pixi.js";
 import { EntityType, Entity } from "./Entity";
 import { Text } from "pixi.js";
 import { socketVal } from "$lib/stores";
-import { TILE_WIDTH } from "$lib/Camera";
+import { SCREEN_HEIGHT, SCREEN_WIDTH, TILE_WIDTH } from "$lib/Camera";
+import type { World } from "./World";
+import { interpolate } from "$lib/Position";
 
 const MOVEMENT_LOCK_TIME = 250;
 
@@ -26,7 +28,7 @@ export class Player implements Entity {
     movementLock = false;
 
 
-    constructor(app: Application, interactive: boolean, username: string) {            
+    constructor(world: World, interactive: boolean, username: string) {            
         this.interactive = interactive
         this.username = username
 
@@ -35,44 +37,50 @@ export class Player implements Entity {
         
         socketVal.on("playerMove", ({username, x, y}) => {
             if (username === this.username && !interactive) { // If this player and its not the client's player as that would already be handled
-                this.move({x, y})
+                this.move(world, {x, y})
             }
         })
     }
 
-    update() { 
+    update(world: World) { 
         if (this.interactive) {
-            if (this.w.isDown) this.move({x: this.pos.x, y: this.pos.y - TILE_WIDTH})
-            if (this.a.isDown) this.move({x: this.pos.x - TILE_WIDTH, y: this.pos.y})
-            if (this.s.isDown) this.move({x: this.pos.x, y: this.pos.y + TILE_WIDTH})
-            if (this.d.isDown) this.move({x: this.pos.x + TILE_WIDTH, y: this.pos.y})
+            if (this.w.isDown) this.move(world, {x: this.pos.x, y: this.pos.y - TILE_WIDTH})
+            if (this.a.isDown) this.move(world, {x: this.pos.x - TILE_WIDTH, y: this.pos.y})
+            if (this.s.isDown) this.move(world, {x: this.pos.x, y: this.pos.y + TILE_WIDTH})
+            if (this.d.isDown) this.move(world, {x: this.pos.x + TILE_WIDTH, y: this.pos.y})
         }
     }
 
-    move(pos: {x: number, y: number}) {
+    move(world: World, pos: {x: number, y: number}) {
         if (!this.movementLock) {
             this.movementLock = true
+
+            if (this.interactive && !world.camera.isPositionViewed(pos)) { // Controlling player moves out of bounds
+                const delta = {
+                    x: pos.x - this.pos.x,
+                    y: pos.y - this.pos.y
+                }
+
+                const magnitude = Math.abs(delta.x + delta.y) // I know this isn't a proper magnitude, but since only one will have a non-zero value it works
+                const normalizedDelta = {
+                    x: delta.x / magnitude,
+                    y: delta.y / magnitude
+                }
+
+                const newCameraPos = {
+                    x: world.camera.pos.x + (normalizedDelta.x * SCREEN_WIDTH),
+                    y: world.camera.pos.y + (normalizedDelta.y * SCREEN_HEIGHT)
+                }
+                interpolate(world.camera.pos, newCameraPos, 32, MOVEMENT_LOCK_TIME)
+            }
+
             setTimeout(() => {this.movementLock = false}, MOVEMENT_LOCK_TIME)
 
-            const d = {
-                x: pos.x - this.pos.x,
-                y: pos.y - this.pos.y
-            } // Get position delta
-    
             if (this.interactive) {
                 socketVal.emit("playerMove", {username: this.username, x: pos.x, y: pos.y})
             }    
 
-            let frames = 0
-            const NUM_FRAMES = 16
-            const updateID = setInterval(() => {
-                if (d.x) this.pos.x += d.x / NUM_FRAMES // Move player by eighth of total movement (change in x / interval)
-                if (d.y) this.pos.y += d.y / NUM_FRAMES
-
-                if (++frames === NUM_FRAMES) { // Used for animations and to stop the movement
-                    clearInterval(updateID)
-                }
-            }, MOVEMENT_LOCK_TIME / NUM_FRAMES)
+            interpolate(this.pos, pos, 16, MOVEMENT_LOCK_TIME)
         }
     };
 }
