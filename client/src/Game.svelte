@@ -36,13 +36,15 @@
 
 		// Create player
 		const {username} = await fetch("/api/auth/username").then(res => res.json())
-		const player = new Player(app, true, username)
+		const player = new Player(world, true, username)
 		world.add(player)
 
+		world.add(new Player(world, false, "tehe"))
+		
 		// Load other players
 		let otherPlayers = await fetch("/api/game/players").then(res => res.json())
 		for (const username of otherPlayers) {
-			world.add(new Player(app, false, username))
+			world.add(new Player(world, false, username))
 		}
 	});
 </script>
