@@ -22,5 +22,8 @@ export function interpolate(from: Position, to: Position, steps: number, totalTi
             clearInterval(interpolateID)
         }
     }, totalTime / steps)
+}
 
+export function calcMagnitude(pos: Position): number {
+    return Math.sqrt(pos.x * pos.x + pos.y * pos.y)
 }

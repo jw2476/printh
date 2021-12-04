@@ -14,7 +14,6 @@ export class World {
             this.entities.forEach(e => e.update(this))
 
             this.camera.render(this.app, this.entities)
-            console.log("test")
         }
         this.app.ticker.add(update.bind(this))
     }

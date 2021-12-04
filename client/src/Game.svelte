@@ -13,6 +13,7 @@
 
 	// PIXI
 	import { Application, Sprite } from 'pixi.js';
+import { Slime } from '$lib/enemies/Slime';
 
 	let parent: HTMLElement;
 	let app: Application;
@@ -31,21 +32,22 @@
 		world = new World(app)
 
 		// Create background
-		const bkg = new Backgroud(app, TILE_WIDTH * GRID_SIZE * 2); // 2x2 meta grid
+		const bkg = new Backgroud(world, TILE_WIDTH * GRID_SIZE * 2); // 2x2 meta grid
 		world.add(bkg)
 
 		// Create player
 		const {username} = await fetch("/api/auth/username").then(res => res.json())
 		const player = new Player(world, true, username)
 		world.add(player)
-
-		world.add(new Player(world, false, "tehe"))
 		
 		// Load other players
 		let otherPlayers = await fetch("/api/game/players").then(res => res.json())
 		for (const username of otherPlayers) {
 			world.add(new Player(world, false, username))
 		}
+
+		// Load slimes
+		world.add(new Slime(world, {x: GRID_SIZE * TILE_WIDTH + TILE_WIDTH, y: 0}))
 	});
 </script>
 

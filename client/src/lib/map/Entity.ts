@@ -5,13 +5,13 @@ import type { World } from "./World"
 export const GRID_SIZE = 10
 
 export enum EntityType {
-    Nothing = 0,
-    Player = 1,
-    Backgroud = 2
+    PLAYER = 1,
+    BACKGROUD,
+    SLIME
 }
-
 export interface Entity {
-    tileType: EntityType
+    world: World
+    type: EntityType
     pos: Position
     sprite: Sprite
 
