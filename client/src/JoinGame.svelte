@@ -18,14 +18,15 @@
 			return;
 		}
 
-		$socket.emit('joinGame', {
+		socket.emit('joinGame', {
 			code: codeVal
 		});
 		state = 'waiting'
 	}
 
 	onMount(() => {
-		$socket.on('startGame', () => {
+		socket.on('startGame', data => {
+			
 			route.set('game')
 		})
 	})

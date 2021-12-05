@@ -8,7 +8,7 @@ type DisplayableData = {
     sprite: Sprite
 }
 
-export type DisplayableEntity = Entity & DisplayableData
+export type DisplayableEntity = Entity<any> & DisplayableData
 
 export class Displayable extends Trait<DisplayableEntity> {
     type = TraitType.DISPLAYABLE

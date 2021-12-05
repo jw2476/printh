@@ -1,7 +1,7 @@
 import { TILE_WIDTH } from "$lib/Camera";
-import { Entity, EntityType } from "$lib/map/Entity";
+import { Entity, EntityType } from "src/ecs/Entity";
 import type { Player } from "$lib/map/Player";
-import type { World } from "$lib/map/World";
+import type { World } from "$lib/entity/World";
 import { calcMagnitude, interpolate, Position } from "$lib/Position";
 import { Sprite } from "pixi.js";
 

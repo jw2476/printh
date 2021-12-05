@@ -1,14 +1,17 @@
 import type { Entity } from "./Entity";
 
 export enum TraitType {
-    DISPLAYABLE = "displayable"
+    DISPLAYABLE = "displayable",
+    MOVABLE = "movable"
 }
 
-export abstract class Trait<E extends Entity> {
+export abstract class Trait<E extends Entity<any>> {
     entity: E
 
     constructor(entity: E) {
         this.entity = entity
+
+        this.setup()
     }
 
     abstract setup(): void

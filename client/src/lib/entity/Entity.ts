@@ -6,23 +6,31 @@ import type { World } from "./World"
 export const GRID_SIZE = 10
 
 export enum EntityType {
-    PLAYER = 1,
-    BACKGROUD,
-    SLIME
+    PLAYER = "player",
+    BACKGROUND = "background",
+    SLIME = "slime"
 }
 
-export abstract class Entity {
+export abstract class Entity<T> {
     private static nextID = 0
 
-    id = Entity.nextID++
+    id: number
     world: World
+    data: T
     type: EntityType
 
-    traits: Array<Trait<Entity>> = []
+    traits: Array<Trait<Entity<T>>> = []
 
-    constructor(world: World, type: EntityType) {
+    constructor(world: World, data: T, type: EntityType, id?: number) {
         this.world = world
+        this.data = data
         this.type = type
+
+        if (id) {
+            this.id = id
+        } else {
+            this.id = Entity.nextID++
+        }
 
         this.world.add(this)
     }
@@ -31,5 +39,8 @@ export abstract class Entity {
         return !!this.traits.find(t => t.type === traitType)
     }
 
+    exportData(): T {
+        return this.data
+    }
     abstract update(): void
 }

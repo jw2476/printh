@@ -5,18 +5,16 @@
 	import Login from './Login.svelte';
 	import SignUp from './SignUp.svelte';
 	import { authenticated } from '$lib/stores.js';
-	import HostGame from './HostGame.svelte';
-	import io from 'socket.io-client';
+	import CodeScreen from './CodeScreen.svelte';
 	import Cookies from 'js-cookie';
 	import JoinGame from './JoinGame.svelte';
 	import Game from './Game.svelte';
+import HostGame from './HostGame.svelte';
 
-
-	socket.set(io());
 
 	authenticated.subscribe((authed) => {
 		if (authed)
-			$socket.emit('auth', Cookies.get('token'));
+			socket.emit('auth', Cookies.get('token'));
 	});
 </script>
 
@@ -30,7 +28,7 @@
 			<Button onClick={() => route.set("login")}>Login</Button>
 			<Button onClick={() => route.set("signup")}>Sign Up</Button>
 		{:else}
-			<Button onClick={() => route.set("hostGame")}>Host a Game</Button>
+			<Button onClick={() => route.set("codeScreen")}>Host a Game</Button>
 			<Button onClick={() => route.set("joinGame")}>Join a Game</Button>
  		{/if}
 	</Box>
@@ -38,12 +36,14 @@
 	<Login />
 {:else if $route === "signup"}
 	<SignUp />
-{:else if $route === "hostGame"}
-	<HostGame />
+{:else if $route === "codeScreen"}
+	<CodeScreen />
 {:else if $route === "joinGame"}
 	<JoinGame />
 {:else if $route === "game"}
 	<Game/>
+{:else if $route === "hostGame"}
+	<HostGame/>
 {/if}
 
 <style global='true'>

@@ -14,6 +14,12 @@ const {
 } = process.env
 
 
+type GamePacket = {
+	to: Array<string> // list of user ids
+	data: any,
+	opcode: string
+}
+
 export class Socket implements ISocket {
 	ws: WebSocket;
 	user: IUser;
@@ -67,6 +73,12 @@ export class Socket implements ISocket {
 			await game.save()
 
 			userIDToSocket[game.host._id]?.ws.emit('updatePlayers', game.players)
+		})
+
+		ws.on('packet', (packet: GamePacket) => {
+			for (const userID of packet.to) {
+				userIDToSocket[userID]?.ws.emit(packet.opcode, packet.data)
+			}
 		})
 	}
 }

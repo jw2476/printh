@@ -1,36 +1,58 @@
-<script lang='ts'>
-	import Box from './lib/Box.svelte';
-	import { onMount } from 'svelte';
-	import { socket } from './lib/stores.js';
-	import Button from './lib/Button.svelte';
+<script lang="ts">
+import Box from "$lib/Box.svelte";
 
-	let code = 'Loading...';
-	let players: Array<Object> = [];
+    import { TILE_WIDTH } from "$lib/Camera";
+    import { GRID_SIZE } from "$lib/entity/Entity";
 
+    import { World } from "$lib/entity/World";
+    import { Background } from "$lib/map/Background";
+import { MovePlayerData, Player } from "$lib/map/Player";
+import { PacketOpcode } from "$lib/Packet";
+    import { host, players, socket } from "$lib/stores";
+import { Movable, MovableEntity } from "$lib/traits/Movable";
+    import { Application } from "@pixi/app";
 
-	onMount(async () => {
-		const res = await fetch('/api/createGame').then(res => res.json());
-		code = res.code;
+    import { onMount } from "svelte";
 
-		$socket.on('updatePlayers', plrs => {
-			players = plrs;
+    let app: Application
+    let parent: HTMLElement
+
+    function sleep(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    onMount(async () => {
+        while (!host) {
+            await sleep(100)
+        } // Wait till startGame packet comes back with host ID
+
+        app = new Application({
+			width: TILE_WIDTH * GRID_SIZE,
+			height: TILE_WIDTH * GRID_SIZE
 		});
-	});
+        parent.appendChild(app.view)
 
-	async function startGame() {
-		$socket.emit("startGame")
-	}
+        const world = new World(app)
+
+        new Background(world, {size: GRID_SIZE * 2})
+
+
+        // Initialize players and monitor player movement
+        for (const p of players!!) {
+            const player = new Player(world, {
+                pos: {x: 0, y: 0},
+                userID: p.id
+            }, false)
+        }
+
+        socket.on(PacketOpcode.MOVE_PLAYER, (data: MovePlayerData) => {
+            const player = world.entities.find(e => e.id === data.id)!! as MovableEntity
+            Movable.move(player, data.pos)
+        })
+        
+    })
 </script>
 
 <Box>
-	<p class='text text-indigo-200 text-xl'>Enter the code below to join the game</p>
-	<p class='text text-white text-7xl font-bold'>Code: {code}</p>
-	<Button onClick={startGame}>Start Game</Button>
-</Box>
-<Box>
-	<div class='grid grid-cols-5 gap-4'>
-		{#each players as player}
-			<div class='text text-white border border-gray-900 rounded-md p-4 shadow-lg'>{player.username}</div>
-		{/each}
-	</div>
+	<div bind:this={parent}></div>
 </Box>

@@ -8,8 +8,29 @@ export async function startGame(socket: ISocket) {
 		return;
 	}
 
+	const allPlayers = game.players.map(player => {
+        return {
+            username: player.username,
+            id: player._id
+        }
+    })
+	const host = game.host._id
+
 	for (const player of game.players) {
 		const playerSocket = userIDToSocket[player._id];
-		playerSocket?.ws.emit('startGame');
+
+		const players = allPlayers.filter(p => p.id !== player._id) // Remove this player
+
+		playerSocket?.ws.emit('startGame', {
+			players,
+			host
+		});
 	}
+
+	console.log(host)
+
+	userIDToSocket[host]?.ws.emit('startGame', {
+		players: allPlayers,
+		host
+	})
 }

@@ -26,8 +26,8 @@ export class Camera {
     render(world: World) {
         const displayableEntities = world.entities.filter(e => e.hasTrait(TraitType.DISPLAYABLE)) as Array<DisplayableEntity>
         displayableEntities.forEach(e => {
-            e.sprite.x = (this.pos.x - e.pos.x) * TILE_WIDTH,
-            e.sprite.y = (this.pos.y - e.pos.y) * TILE_WIDTH
+            e.sprite.x = (e.pos.x - this.pos.x) * TILE_WIDTH,
+            e.sprite.y = (e.pos.y - this.pos.y) * TILE_WIDTH
         })
     } 
 }
