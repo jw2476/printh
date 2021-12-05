@@ -4,16 +4,18 @@
 	import { onMount } from 'svelte';
 
 	// Internal game stuff
-	import { Entity, GRID_SIZE } from '$lib/map/Entity';
-	import { Player } from '$lib/map/Player';
+	import { GRID_SIZE } from "$lib/entity/Entity"
 	import { Backgroud } from '$lib/map/Background';
 	import { TILE_WIDTH } from '$lib/Camera';
-	import { World } from '$lib/map/World';
+	import { World } from '$lib/entity/World';
+
+	// import { Slime } from '$lib/enemies/Slime';
+	// import { Player } from '$lib/map/Player';
+
 
 
 	// PIXI
 	import { Application, Sprite } from 'pixi.js';
-import { Slime } from '$lib/enemies/Slime';
 
 	let parent: HTMLElement;
 	let app: Application;
@@ -32,22 +34,22 @@ import { Slime } from '$lib/enemies/Slime';
 		world = new World(app)
 
 		// Create background
-		const bkg = new Backgroud(world, TILE_WIDTH * GRID_SIZE * 2); // 2x2 meta grid
+		const bkg = new Backgroud(world, GRID_SIZE * 2); // 2x2 meta grid
 		world.add(bkg)
 
-		// Create player
-		const {username} = await fetch("/api/auth/username").then(res => res.json())
-		const player = new Player(world, true, username)
-		world.add(player)
+		// // Create player
+		// const {username} = await fetch("/api/auth/username").then(res => res.json())
+		// const player = new Player(world, true, username)
+		// world.add(player)
 		
-		// Load other players
-		let otherPlayers = await fetch("/api/game/players").then(res => res.json())
-		for (const username of otherPlayers) {
-			world.add(new Player(world, false, username))
-		}
+		// // Load other players
+		// let otherPlayers = await fetch("/api/game/players").then(res => res.json())
+		// for (const username of otherPlayers) {
+		// 	world.add(new Player(world, false, username))
+		// }
 
-		// Load slimes
-		world.add(new Slime(world, {x: GRID_SIZE * TILE_WIDTH + TILE_WIDTH, y: 0}))
+		// // Load slimes
+		// world.add(new Slime(world, {x: GRID_SIZE * TILE_WIDTH + TILE_WIDTH, y: 0}))
 	});
 </script>
 

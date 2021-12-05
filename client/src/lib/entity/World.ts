@@ -3,23 +3,27 @@ import type { Application } from "pixi.js";
 import type { Entity } from "./Entity";
 
 export class World {
-    entities: Entity[] = []
-    camera = new Camera({x: 0, y: 0})
+
     app: Application
+
+    entities: Entity[] = []
 
     constructor(app: Application) {
         this.app = app
 
         const update = () => {
-            this.entities.forEach(e => e.update(this))
-
-            this.camera.render(this.app, this.entities)
+            this.entities.forEach(e => {
+                e.update()
+                e.traits.forEach(t => t.update())
+            }) // Update entity, then traits
         }
         this.app.ticker.add(update.bind(this))
     }
 
+
+
     add(e: Entity) {
         this.entities.push(e)
-        this.app.stage.addChild(e.sprite)
+        e.traits.forEach(t => t.setup()) // Run trait setup method
     }
 }
