@@ -18,8 +18,8 @@ export class Camera {
     }
 
     isPositionViewed(pos: Position): boolean {
-        const viewedX = this.pos.x <= pos.x && pos.x < this.pos.x + SCREEN_WIDTH
-        const viewedY = this.pos.y <= pos.y && pos.y < this.pos.y + SCREEN_HEIGHT
+        const viewedX = this.pos.x <= pos.x && pos.x < this.pos.x + GRID_SIZE
+        const viewedY = this.pos.y <= pos.y && pos.y < this.pos.y + GRID_SIZE
         return viewedX && viewedY
     }
 

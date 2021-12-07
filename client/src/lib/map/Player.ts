@@ -1,6 +1,6 @@
 import { Key } from "$lib/input/Key";
 import { Sprite } from "pixi.js";
-import { Entity, EntityType } from "$lib/entity/Entity";
+import { Entity, EntityType, GRID_SIZE } from "$lib/entity/Entity";
 import type { World } from "$lib/entity/World";
 import { interpolate, Position } from "$lib/Position";
 import { Movable } from "$lib/traits/Movable";
@@ -56,6 +56,26 @@ export class Player extends Entity<PlayerData> {
     move(to: Position) {
         if (!this.movementLock) {
             this.movementLock = true
+
+           if (this.interactive && !this.world.camera.isPositionViewed(to)) { // Controlling player moves out of bounds
+                const delta = {
+                    x: to.x - this.pos.x,
+                    y: to.y - this.pos.y
+                }
+
+                const magnitude = Math.abs(delta.x + delta.y) // I know this isn't a proper magnitude, but since only one will have a non-zero value it works
+                const normalizedDelta = {
+                    x: delta.x / magnitude,
+                    y: delta.y / magnitude
+                }
+
+                const newCameraPos = {
+                    x: this.world.camera.pos.x + (normalizedDelta.x * GRID_SIZE),
+                    y: this.world.camera.pos.y + (normalizedDelta.y * GRID_SIZE)
+                }
+                interpolate(this.world.camera.pos, newCameraPos, 32, MOVEMENT_LOCK_TIME)
+            }
+
             setTimeout(() => this.movementLock = false, 250)
 
             const packet = new Packet<MovePlayerData>([host!!], PacketOpcode.MOVE_PLAYER, {
