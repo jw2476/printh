@@ -29,13 +29,11 @@ window.addEventListener("popstate", (e) => {
 socket.on("startGame", data => {
 	players = data.players
 	host = data.host
-	console.log("E")
 })
 
 // Get current user
 async function getMe() {
 	if (!!Cookies.get("token") && !me) {
 		me = await fetch("/api/auth/me").then(res => res.json())
-		console.log(me)
 	}
 }

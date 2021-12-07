@@ -2,7 +2,8 @@ import type { Entity } from "./Entity";
 
 export enum TraitType {
     DISPLAYABLE = "displayable",
-    MOVABLE = "movable"
+    MOVABLE = "movable",
+    STATEFUL = "stateful"
 }
 
 export abstract class Trait<E extends Entity<any>> {

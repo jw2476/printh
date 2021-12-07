@@ -3,7 +3,7 @@ import { Game } from '../models/Game.js';
 
 export async function startGame(socket: ISocket) {
 	const hostID = socket.user._id;
-	const game = await Game.findOne({ host: hostID });
+	const game = await Game.findOne({ host: hostID }).populate("players");
 	if (!game) {
 		return;
 	}
@@ -26,8 +26,6 @@ export async function startGame(socket: ISocket) {
 			host
 		});
 	}
-
-	console.log(host)
 
 	userIDToSocket[host]?.ws.emit('startGame', {
 		players: allPlayers,

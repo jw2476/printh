@@ -2,7 +2,8 @@
 import Box from "$lib/Box.svelte";
 
     import { TILE_WIDTH } from "$lib/Camera";
-    import { GRID_SIZE } from "$lib/entity/Entity";
+import { Slime } from "$lib/enemies/Slime";
+    import { EntityType, GRID_SIZE } from "$lib/entity/Entity";
 
     import { World } from "$lib/entity/World";
     import { Background } from "$lib/map/Background";
@@ -41,9 +42,14 @@ import { Movable, MovableEntity } from "$lib/traits/Movable";
         for (const p of players!!) {
             const player = new Player(world, {
                 pos: {x: 0, y: 0},
-                userID: p.id
+                userID: p.id,
+                username: p.username
             }, false)
         }
+
+        new Slime(world, {
+            pos: {x: 5, y: 5}
+        }, EntityType.SLIME)
 
         socket.on(PacketOpcode.MOVE_PLAYER, (data: MovePlayerData) => {
             const player = world.entities.find(e => e.id === data.id)!! as MovableEntity

@@ -1,4 +1,5 @@
 import { Camera } from "$lib/Camera";
+import { Slime } from "$lib/enemies/Slime";
 import { Background } from "$lib/map/Background";
 import { Player } from "$lib/map/Player";
 import { Packet, PacketOpcode } from "$lib/Packet";
@@ -40,6 +41,10 @@ export class World {
                     new Player(this, packet.data, packet.data.userID === me?.id, packet.id)
                     break
                 }
+                case (EntityType.SLIME): {
+                    new Slime(this, packet.data, packet.id)
+                    break
+                }
             }
         })
     }
@@ -47,9 +52,6 @@ export class World {
     add(e: Entity<any>) {
         this.entities.push(e)
         e.traits.forEach(t => t.setup()) // Run trait setup method
-
-        console.log(host)
-        console.log(me?.id)
 
         if (iAmHost()) {
             const packet = new Packet<RegisterEntityPacketData>(players!!.map(p => p.id), PacketOpcode.REGISTER_ENTITY, {

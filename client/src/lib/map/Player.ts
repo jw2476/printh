@@ -1,5 +1,5 @@
 import { Key } from "$lib/input/Key";
-import { Sprite } from "pixi.js";
+import { Sprite, Text } from "pixi.js";
 import { Entity, EntityType, GRID_SIZE } from "$lib/entity/Entity";
 import type { World } from "$lib/entity/World";
 import { interpolate, Position } from "$lib/Position";
@@ -7,12 +7,14 @@ import { Movable } from "$lib/traits/Movable";
 import { Displayable } from "$lib/traits/Displayable";
 import { Packet, PacketOpcode } from "$lib/Packet";
 import { host, socket } from "$lib/stores";
+import { TILE_WIDTH } from "$lib/Camera";
 
 const MOVEMENT_LOCK_TIME = 250;
 
 export type PlayerData = {
     pos: Position,
-    userID: string
+    userID: string,
+    username: string
 }
 
 export type MovePlayerData = {
@@ -41,6 +43,14 @@ export class Player extends Entity<PlayerData> {
         this.pos = data.pos
         this.traits.push(new Movable(this))
         this.traits.push(new Displayable(this))
+
+        const text = new Text(data.username, {
+            fontSize: 20,
+            fontFamily: "system-ui"
+        })
+        text.y -= text.height // Place above sprite
+        text.x += (TILE_WIDTH - text.width) / 2
+        this.sprite.addChild(text)
     }
 
     update(): void {
