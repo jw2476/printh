@@ -29,7 +29,7 @@
 		app.renderer.backgroundColor = 0xFFFFFF;
 
 
-		world = new World(app)
+		world = new World(app, 1)
 	});
 </script>
 

@@ -1,4 +1,4 @@
-import { Entity, EntityType } from "$lib/entity/Entity";
+import type { Entity } from "$lib/entity/Entity";
 import { Trait, TraitType } from "$lib/entity/Trait";
 import { Packet, PacketOpcode } from "$lib/Packet";
 import { interpolate, Position } from "$lib/Position";
@@ -20,8 +20,7 @@ export class Movable extends Trait<MovableEntity> {
 
     setup(): void {
         socket.on(PacketOpcode.MOVE, (data: MovablePacketData) => {
-            const interactivePlayer = this.entity.type === EntityType.PLAYER && me?.id === this.entity.data.userID // Ignore server movement 
-            if (this.entity.id === data.id && !interactivePlayer) {
+            if (this.entity.id === data.id) {
                 interpolate(this.entity.pos, data.pos, 16, 250)
             }
         })

@@ -24,7 +24,8 @@ export type MovePlayerData = {
 
 export class Player extends Entity<PlayerData> {
     type = EntityType.PLAYER
-    readonly pos: Position
+    pos: Position
+    size = {x: 1, y: 1}
     sprite = Sprite.from("/favicon.png")
     interactive: boolean
 
@@ -33,6 +34,8 @@ export class Player extends Entity<PlayerData> {
     s = new Key("s")
     d = new Key("d")
     movementLock = false
+
+    inCombat = false
     
 
     constructor(world: World, data: PlayerData, interactive: boolean, id?: number) {
@@ -51,10 +54,14 @@ export class Player extends Entity<PlayerData> {
         text.y -= text.height // Place above sprite
         text.x += (TILE_WIDTH - text.width) / 2
         this.sprite.addChild(text)
+
+        socket.on(PacketOpcode.LOCK_PLAYER_MOVEMENT, () => {
+            this.inCombat = true
+        })
     }
 
     update(): void {
-        if (this.interactive) {
+        if (this.interactive && !this.inCombat) {
             if (this.w.isDown) this.move({x: this.pos.x, y: this.pos.y - 1})
             if (this.s.isDown) this.move({x: this.pos.x, y: this.pos.y + 1})
 
@@ -93,8 +100,6 @@ export class Player extends Entity<PlayerData> {
                 pos: to
             })
             socket.emit("packet", packet.encode())
-
-            interpolate(this.pos, to, 16, 250)
         }
     }
 }

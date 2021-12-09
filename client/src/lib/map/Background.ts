@@ -6,11 +6,12 @@ import type { Position } from "$lib/Position";
 import { TILE_WIDTH } from "$lib/Camera";
 
 export type BackgroundData = {
-    size: number
+    size: Position
 }
 
 export class Background extends Entity<BackgroundData> {
-    readonly pos: Position = {x: 0, y: 0}
+    pos: Position = {x: 0, y: 0}
+    size: Position
     sprite = Sprite.from("/assets/img/bkg.png")
 
     /**
@@ -21,8 +22,7 @@ export class Background extends Entity<BackgroundData> {
     constructor(world: World, data: BackgroundData, id?: number) {
         super(world, data, EntityType.BACKGROUND, id);
 
-        this.sprite.width = data.size * TILE_WIDTH
-        this.sprite.height = data.size * TILE_WIDTH
+        this.size = data.size
 
         this.traits.push(new Displayable(this))
     }

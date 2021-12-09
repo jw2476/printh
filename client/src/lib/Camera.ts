@@ -12,9 +12,11 @@ export const SCREEN_HEIGHT = TILE_WIDTH * GRID_SIZE
 
 export class Camera {
     pos: Position
+    zoom: number
 
-    constructor(pos: Position) {
+    constructor(pos: Position, zoom: number) {
         this.pos = pos
+        this.zoom = zoom
     }
 
     isPositionViewed(pos: Position): boolean {
@@ -26,8 +28,10 @@ export class Camera {
     render(world: World) {
         const displayableEntities = world.entities.filter(e => e.hasTrait(TraitType.DISPLAYABLE)) as Array<DisplayableEntity>
         displayableEntities.forEach(e => {
-            e.sprite.x = (e.pos.x - this.pos.x) * TILE_WIDTH,
-            e.sprite.y = (e.pos.y - this.pos.y) * TILE_WIDTH
+            e.sprite.x = (e.pos.x - this.pos.x) * TILE_WIDTH * this.zoom
+            e.sprite.y = (e.pos.y - this.pos.y) * TILE_WIDTH * this.zoom
+            e.sprite.width = e.size.x * TILE_WIDTH * this.zoom
+            e.sprite.height = e.size.y * TILE_WIDTH * this.zoom
         })
     } 
 }

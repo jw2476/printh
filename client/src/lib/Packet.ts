@@ -2,7 +2,8 @@ export enum PacketOpcode {
     MOVE = "move",
     REGISTER_ENTITY = "registerEntity",
     MOVE_PLAYER = "movePlayer",
-    CHANGE_STATE = "changeState"
+    CHANGE_STATE = "changeState",
+    LOCK_PLAYER_MOVEMENT = "lockPlayerMovement"
 }
 
 export class Packet<T> {

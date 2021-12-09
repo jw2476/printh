@@ -8,7 +8,8 @@ export const GRID_SIZE = 10
 export enum EntityType {
     PLAYER = "player",
     BACKGROUND = "background",
-    SLIME = "slime"
+    SLIME = "slime",
+    UNEXPLORED_BLOCK = "unexploredBlock"
 }
 
 export abstract class Entity<T> {

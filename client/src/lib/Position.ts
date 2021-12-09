@@ -1,3 +1,5 @@
+import { GRID_SIZE } from "./entity/Entity"
+
 export type Position = {
     x: number,
     y: number
@@ -26,4 +28,11 @@ export function interpolate(from: Position, to: Position, steps: number, totalTi
 
 export function calcMagnitude(pos: Position): number {
     return Math.sqrt(pos.x * pos.x + pos.y * pos.y)
+}
+
+export function getGridOrigin(pos: Position): Position {
+    return {
+        x: Math.floor(pos.x / GRID_SIZE) * GRID_SIZE,
+        y: Math.floor(pos.x / GRID_SIZE) * GRID_SIZE
+    }
 }

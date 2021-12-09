@@ -5,7 +5,8 @@ import type { Sprite } from "pixi.js";
 
 type DisplayableData = {
     pos: Position
-    sprite: Sprite
+    sprite: Sprite,
+    size: Position
 }
 
 export type DisplayableEntity = Entity<any> & DisplayableData

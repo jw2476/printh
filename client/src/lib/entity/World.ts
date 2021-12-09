@@ -3,9 +3,12 @@ import { Slime } from "$lib/enemies/Slime";
 import { Background } from "$lib/map/Background";
 import { Player } from "$lib/map/Player";
 import { Packet, PacketOpcode } from "$lib/Packet";
+import type { Position } from "$lib/Position";
 import { host, iAmHost, me, players, socket } from "$lib/stores";
+import type { DisplayableEntity } from "$lib/traits/Displayable";
 import type { Application } from "pixi.js";
 import { Entity, EntityType } from "./Entity";
+import { TraitType } from "./Trait";
 
 type RegisterEntityPacketData = {
     id: number,
@@ -15,12 +18,13 @@ type RegisterEntityPacketData = {
 export class World {
 
     app: Application
-    camera = new Camera({x: 0, y: 0})
+    camera: Camera
 
     entities: Entity<any>[] = []
 
-    constructor(app: Application) {
+    constructor(app: Application, zoom: number) {
         this.app = app
+        this.camera = new Camera({x: 0, y: 0}, zoom)
 
         const update = () => {
             this.entities.forEach(e => {
@@ -62,5 +66,16 @@ export class World {
 
             socket.emit("packet", packet.encode())
         }
+    }
+
+    getEntitiesInRect(pos: Position, size: Position): Entity<any>[] {
+        const displayables = this.entities.filter(e => e.hasTrait(TraitType.DISPLAYABLE)) as DisplayableEntity[]
+        return displayables.filter(e => {
+            if (pos.x <= e.pos.x && e.pos.x < pos.x + size.x) {
+                if (pos.y <= e.pos.y && e.pos.y < pos.y + size.y) {
+                    return true
+                }
+            }
+        })
     }
 }
