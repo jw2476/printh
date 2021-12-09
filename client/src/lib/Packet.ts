@@ -3,7 +3,8 @@ export enum PacketOpcode {
     REGISTER_ENTITY = "registerEntity",
     MOVE_PLAYER = "movePlayer",
     CHANGE_STATE = "changeState",
-    LOCK_PLAYER_MOVEMENT = "lockPlayerMovement"
+    PLAY_MUSIC = "playMusic",
+    INITIATE_COMBAT = "initCombat"
 }
 
 export class Packet<T> {

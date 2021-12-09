@@ -7,6 +7,7 @@ import type { Position } from "$lib/Position";
 import { host, iAmHost, me, players, socket } from "$lib/stores";
 import type { DisplayableEntity } from "$lib/traits/Displayable";
 import type { Application } from "pixi.js";
+import type { Writable } from "svelte/store";
 import { Entity, EntityType } from "./Entity";
 import { TraitType } from "./Trait";
 

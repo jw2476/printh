@@ -2,9 +2,10 @@ import { EntityType, GRID_SIZE } from "$lib/entity/Entity";
 import { TraitType } from "$lib/entity/Trait";
 import type { World } from "$lib/entity/World";
 import type { Player } from "$lib/map/Player";
+import type { PlayMusicPacketData } from "$lib/Music";
 import { Packet, PacketOpcode } from "$lib/Packet";
 import type { Position } from "$lib/Position";
-import { socket } from "$lib/stores";
+import { players, socket } from "$lib/stores";
 import type { Enemy } from "$lib/traits/Hostile";
 import { Movable } from "$lib/traits/Movable";
 
@@ -44,9 +45,15 @@ export class Combat {
                 y: gridOrigin.y + ((GRID_SIZE / (this.players.length + 1)) * (i + 1)) - (p.size.y / 2)
             }
             Movable.move(p, moveTo)
-
-            const lockMovementPacket = new Packet([p.data.userID], PacketOpcode.LOCK_PLAYER_MOVEMENT, null)
-            socket.emit("packet", lockMovementPacket.encode())
         })
+
+        const initiateCombat = new Packet(this.players.map(p => p.data.userID), PacketOpcode.INITIATE_COMBAT, null)
+            socket.emit("packet", initiateCombat.encode())
+
+        const playCombatMusicPacket = new Packet<PlayMusicPacketData>(this.players.map(p => p.data.userID), PacketOpcode.PLAY_MUSIC, {
+            song: "rude_buster.mp3",
+            loop: true
+        })
+        socket.emit("packet", playCombatMusicPacket.encode())
     }
 }

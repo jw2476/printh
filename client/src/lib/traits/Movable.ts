@@ -1,5 +1,6 @@
-import type { Entity } from "$lib/entity/Entity";
+import { Entity, EntityType } from "$lib/entity/Entity";
 import { Trait, TraitType } from "$lib/entity/Trait";
+import type { Player } from "$lib/map/Player";
 import { Packet, PacketOpcode } from "$lib/Packet";
 import { interpolate, Position } from "$lib/Position";
 import { host, iAmHost, me, players, socket } from "$lib/stores";

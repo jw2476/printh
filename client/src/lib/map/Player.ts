@@ -55,7 +55,7 @@ export class Player extends Entity<PlayerData> {
         text.x += (TILE_WIDTH - text.width) / 2
         this.sprite.addChild(text)
 
-        socket.on(PacketOpcode.LOCK_PLAYER_MOVEMENT, () => {
+        socket.on(PacketOpcode.INITIATE_COMBAT, () => {
             this.inCombat = true
         })
     }
