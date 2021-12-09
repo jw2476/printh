@@ -59,7 +59,6 @@ export class Player extends Entity<PlayerData> {
 
         socket.on(PacketOpcode.INITIATE_COMBAT, (data: InitiateCombatPacketData) => {
             this.inCombat = true
-            interpolate(this.pos, data.playerPos, 16, 250)
         })
     }
 

@@ -10,8 +10,11 @@ import type { Enemy } from "$lib/traits/Hostile";
 import { Movable } from "$lib/traits/Movable";
 
 
+function sleep(ms: number): Promise<null> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export type InitiateCombatPacketData = {
-    playerPos: Position // Needed because movement updates for players are ignored client-side
 }
 export class Combat {
     world: World
@@ -30,10 +33,26 @@ export class Combat {
         this.enemies = entitiesInGrid.filter(e => e.hasTrait(TraitType.HOSTILE)) as Enemy[]
         this.players = entitiesInGrid.filter(e => e.type === EntityType.PLAYER) as Player[]
 
+        this.enemies.forEach(e => e.inCombat = true)
+        this.players.forEach(p => {
+            p.inCombat = true
 
+            const initiateCombat = new Packet<InitiateCombatPacketData>([p.data.userID], PacketOpcode.INITIATE_COMBAT, {})
+            socket.emit("packet", initiateCombat.encode())
+        })
+
+        const playCombatMusicPacket = new Packet<PlayMusicPacketData>(this.players.map(p => p.data.userID), PacketOpcode.PLAY_MUSIC, {
+            song: "rude_buster.mp3",
+            loop: true
+        })
+        socket.emit("packet", playCombatMusicPacket.encode())
+
+        sleep(1000).then(() => this.alignEntities(gridOrigin))
+    }
+
+    alignEntities(gridOrigin: Position) {
         // Align enemies to right
         this.enemies.forEach((e: Enemy, i: number) => {
-            e.inCombat = true
             const moveTo = {
                 x: gridOrigin.x + (GRID_SIZE * 0.75),
                 y: gridOrigin.y + ((GRID_SIZE / (this.enemies.length + 1)) * (i + 1)) - (e.size.y / 2)
@@ -43,25 +62,11 @@ export class Combat {
 
         // Align players to left
         this.players.forEach((p: Player, i: number) => {
-            p.inCombat = true
             const moveTo = {
                 x: gridOrigin.x + (GRID_SIZE * 0.25),
                 y: gridOrigin.y + ((GRID_SIZE / (this.players.length + 1)) * (i + 1)) - (p.size.y / 2)
             }
             Movable.move(p, moveTo)
-
-            const initiateCombat = new Packet<InitiateCombatPacketData>([p.data.userID], PacketOpcode.INITIATE_COMBAT, {
-                playerPos: moveTo
-            })
-            socket.emit("packet", initiateCombat.encode())
         })
-
-        
-
-        const playCombatMusicPacket = new Packet<PlayMusicPacketData>(this.players.map(p => p.data.userID), PacketOpcode.PLAY_MUSIC, {
-            song: "rude_buster.mp3",
-            loop: true
-        })
-        socket.emit("packet", playCombatMusicPacket.encode())
     }
 }

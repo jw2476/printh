@@ -22,8 +22,9 @@ export class Movable extends Trait<MovableEntity> {
     setup(): void {
         socket.on(PacketOpcode.MOVE, (data: MovablePacketData) => {
             if (this.entity.id === data.id) {
-                const isThisPlayer = this.entity.type === EntityType.PLAYER && me?.id === this.entity.data.userID
-                if (!isThisPlayer) {
+                const isThisPlayer = this.entity.type === EntityType.PLAYER && me?.id === this.entity.data.userID 
+                const thisPlayerInCombat = isThisPlayer && (this.entity as Player).inCombat
+                if (!isThisPlayer || thisPlayerInCombat) {
                     interpolate(this.entity.pos, data.pos, 16, 250)
                 }
             }
