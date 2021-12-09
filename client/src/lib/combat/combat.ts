@@ -9,6 +9,10 @@ import { players, socket } from "$lib/stores";
 import type { Enemy } from "$lib/traits/Hostile";
 import { Movable } from "$lib/traits/Movable";
 
+
+export type InitiateCombatPacketData = {
+    playerPos: Position // Needed because movement updates for players are ignored client-side
+}
 export class Combat {
     world: World
 
@@ -45,10 +49,14 @@ export class Combat {
                 y: gridOrigin.y + ((GRID_SIZE / (this.players.length + 1)) * (i + 1)) - (p.size.y / 2)
             }
             Movable.move(p, moveTo)
+
+            const initiateCombat = new Packet<InitiateCombatPacketData>([p.data.userID], PacketOpcode.INITIATE_COMBAT, {
+                playerPos: moveTo
+            })
+            socket.emit("packet", initiateCombat.encode())
         })
 
-        const initiateCombat = new Packet(this.players.map(p => p.data.userID), PacketOpcode.INITIATE_COMBAT, null)
-            socket.emit("packet", initiateCombat.encode())
+        
 
         const playCombatMusicPacket = new Packet<PlayMusicPacketData>(this.players.map(p => p.data.userID), PacketOpcode.PLAY_MUSIC, {
             song: "rude_buster.mp3",

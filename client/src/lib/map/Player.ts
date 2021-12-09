@@ -8,6 +8,7 @@ import { Displayable } from "$lib/traits/Displayable";
 import { Packet, PacketOpcode } from "$lib/Packet";
 import { host, socket } from "$lib/stores";
 import { TILE_WIDTH } from "$lib/Camera";
+import type { InitiateCombatPacketData } from "$lib/combat/combat";
 
 const MOVEMENT_LOCK_TIME = 250;
 
@@ -34,6 +35,7 @@ export class Player extends Entity<PlayerData> {
     s = new Key("s")
     d = new Key("d")
     movementLock = false
+    movingTo?: Position
 
     inCombat = false
     
@@ -55,8 +57,9 @@ export class Player extends Entity<PlayerData> {
         text.x += (TILE_WIDTH - text.width) / 2
         this.sprite.addChild(text)
 
-        socket.on(PacketOpcode.INITIATE_COMBAT, () => {
+        socket.on(PacketOpcode.INITIATE_COMBAT, (data: InitiateCombatPacketData) => {
             this.inCombat = true
+            interpolate(this.pos, data.playerPos, 16, 250)
         })
     }
 
@@ -74,7 +77,7 @@ export class Player extends Entity<PlayerData> {
         if (!this.movementLock) {
             this.movementLock = true
 
-           if (this.interactive && !this.world.camera.isPositionViewed(to)) { // Controlling player moves out of bounds
+            if (this.interactive && !this.world.camera.isPositionViewed(to)) { // Controlling player moves out of bounds
                 const delta = {
                     x: to.x - this.pos.x,
                     y: to.y - this.pos.y
@@ -100,6 +103,9 @@ export class Player extends Entity<PlayerData> {
                 pos: to
             })
             socket.emit("packet", packet.encode())
+            this.movingTo = to
+            console.log(to.x)
+            interpolate(this.pos, to, 16, 250)
         }
     }
 }
