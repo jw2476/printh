@@ -1,6 +1,7 @@
 import {writable} from "svelte/store";
 import Cookies from 'js-cookie';
 import io from "socket.io-client"
+import type { Combat } from "./combat/combat";
 
 export const route = writable<string>("index")
 export const authenticated = writable(!!Cookies.get("token"))
@@ -9,6 +10,7 @@ export let players: {id: string, username: string}[] | undefined
 export let host: string | undefined
 export let me: {id: string, username: string} | undefined
 export let iAmHost = () => host === me?.id
+export const currentCombat = writable<Combat>()
 
 getMe()
 route.subscribe(_ => { // Update authenticated on page change

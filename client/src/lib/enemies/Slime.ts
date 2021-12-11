@@ -22,7 +22,7 @@ export class Slime extends Entity<SlimeData> {
     frame = 0
 
     movingTowards?: Player
-    inCombat = false
+    combat?: Combat
 
     constructor(world: World, data: SlimeData, id?: number) {
         super(world, data, EntityType.SLIME, id)
@@ -38,7 +38,7 @@ export class Slime extends Entity<SlimeData> {
         if (iAmHost()) {
             this.frame = (this.frame + 1) % 60
 
-            if (!this.inCombat) {
+            if (!this.combat) {
                 // Check if player is within 5 squares
                 this.movingTowards = undefined
                 const players = this.world.entities.filter(e => e.type === EntityType.PLAYER) as Player[]

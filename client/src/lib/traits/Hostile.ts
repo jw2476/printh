@@ -1,11 +1,10 @@
-import type { Entity } from "$lib/entity/Entity";
+import type { Combat } from "$lib/combat/combat";
 import { Trait, TraitType } from "$lib/entity/Trait";
 import type { Position } from "$lib/Position";
-import type { Sprite } from "pixi.js";
 import type { DisplayableEntity } from "./Displayable";
 
 type EnemyData = {
-    inCombat: boolean,
+    combat?: Combat,
     pos: Position,
 }
 

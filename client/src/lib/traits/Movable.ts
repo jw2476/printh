@@ -13,26 +13,31 @@ export type MovableEntity = MovableData & Entity<any>
 
 type MovablePacketData = {
     id: number,
-    pos: Position
+    pos: Position,
 }
 
 export class Movable extends Trait<MovableEntity> {
     type = TraitType.MOVABLE;
+    movementQueue: Position[] = []
+    moving = false
 
     setup(): void {
         socket.on(PacketOpcode.MOVE, (data: MovablePacketData) => {
             if (this.entity.id === data.id) {
                 const isThisPlayer = this.entity.type === EntityType.PLAYER && me?.id === this.entity.data.userID 
-                const thisPlayerInCombat = isThisPlayer && (this.entity as Player).inCombat
+                const thisPlayerInCombat = isThisPlayer && (this.entity as Player).combat
                 if (!isThisPlayer || thisPlayerInCombat) {
-                    interpolate(this.entity.pos, data.pos, 16, 250)
+                    this.movementQueue.push(data.pos)
                 }
             }
         })
     }
 
     update(): void {
-        return
+        if (!this.moving && this.movementQueue.length !== 0) {
+            this.moving = true
+            interpolate(this.entity.pos, this.movementQueue.shift()!!, 16, 250).then(() => this.moving = false)
+        }
     }
     
     static move(entity: MovableEntity, to: Position) {

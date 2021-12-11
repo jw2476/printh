@@ -6,9 +6,9 @@ import { interpolate, Position } from "$lib/Position";
 import { Movable } from "$lib/traits/Movable";
 import { Displayable } from "$lib/traits/Displayable";
 import { Packet, PacketOpcode } from "$lib/Packet";
-import { host, socket } from "$lib/stores";
+import { currentCombat, host, socket } from "$lib/stores";
 import { TILE_WIDTH } from "$lib/Camera";
-import type { InitiateCombatPacketData } from "$lib/combat/combat";
+import { Combat, InitiateCombatPacketData } from "$lib/combat/combat";
 
 const MOVEMENT_LOCK_TIME = 250;
 
@@ -37,8 +37,7 @@ export class Player extends Entity<PlayerData> {
     movementLock = false
     movingTo?: Position
 
-    inCombat = false
-    
+    combat?: Combat
 
     constructor(world: World, data: PlayerData, interactive: boolean, id?: number) {
         super(world, data, EntityType.PLAYER, id);
@@ -58,12 +57,16 @@ export class Player extends Entity<PlayerData> {
         this.sprite.addChild(text)
 
         socket.on(PacketOpcode.INITIATE_COMBAT, (data: InitiateCombatPacketData) => {
-            this.inCombat = true
+            this.combat = new Combat(this.world, data.gridOrigin)
+
+            if (this.interactive) {
+                currentCombat.set(this.combat)
+            }
         })
     }
 
     update(): void {
-        if (this.interactive && !this.inCombat) {
+        if (this.interactive && !this.combat) {
             if (this.w.isDown) this.move({x: this.pos.x, y: this.pos.y - 1})
             if (this.s.isDown) this.move({x: this.pos.x, y: this.pos.y + 1})
 

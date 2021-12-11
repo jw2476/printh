@@ -12,9 +12,9 @@
 	// PIXI
 	import { Application } from 'pixi.js';
 	import { sound } from "@pixi/sound"
-	import { socket } from '$lib/stores';
+	import { currentCombat, socket } from '$lib/stores';
 	import { PacketOpcode } from '$lib/Packet';
-	import { playMusic, PlayMusicPacketData } from '$lib/Music';
+	import { playMusic } from '$lib/Music';
 	import { writable } from 'svelte/store';
 
 	let parent: HTMLElement;
@@ -43,9 +43,9 @@
 </script>
 
 <Box>
-	<div class="grid grid-cols-2">
+	<div class="lg:grid lg:grid-cols-2">
 		<div bind:this={parent}></div>
-		{#if inCombat}
+		{#if $currentCombat}
 			<CombatUI />
 		{/if}
 	</div>
