@@ -4,10 +4,10 @@ import { Background } from "$lib/map/Background";
 import { Player } from "$lib/map/Player";
 import { Packet, PacketOpcode } from "$lib/Packet";
 import type { Position } from "$lib/Position";
-import { host, iAmHost, me, players, socket } from "$lib/stores";
+import { iAmHost, me, players, socket } from "$lib/stores";
 import type { DisplayableEntity } from "$lib/traits/Displayable";
 import type { Application } from "pixi.js";
-import type { Writable } from "svelte/store";
+import { DeregisterEntityPacketData, Entities } from "./Entities";
 import { Entity, EntityType } from "./Entity";
 import { TraitType } from "./Trait";
 
@@ -21,7 +21,7 @@ export class World {
     app: Application
     camera: Camera
 
-    entities: Entity<any>[] = []
+    entities = new Entities()
 
     constructor(app: Application, zoom: number) {
         this.app = app
@@ -52,6 +52,12 @@ export class World {
                 }
             }
         })
+
+        socket.on(PacketOpcode.DEREGISTER_ENTITY, (data: DeregisterEntityPacketData) => {
+            const entity = this.entities.find(e => e.id === data.id)
+            if (!entity) return
+            this.remove(entity)
+        })
     }
 
     add(e: Entity<any>) {
@@ -67,6 +73,10 @@ export class World {
 
             socket.emit("packet", packet.encode())
         }
+    }
+
+    remove(e: Entity<any>) {
+        this.entities.deregisterEntity(e)        
     }
 
     getEntitiesInRect(pos: Position, size: Position): Entity<any>[] {

@@ -39,6 +39,10 @@ export class Movable extends Trait<MovableEntity> {
             interpolate(this.entity.pos, this.movementQueue.shift()!!, 16, 250).then(() => this.moving = false)
         }
     }
+
+    cleanup(): void {
+        return
+    }
     
     static move(entity: MovableEntity, to: Position) {
         if (iAmHost()) {

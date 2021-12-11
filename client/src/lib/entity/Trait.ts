@@ -17,5 +17,6 @@ export abstract class Trait<E extends Entity<any>> {
 
     abstract setup(): void
     abstract update(): void
+    abstract cleanup(): void
     abstract type: TraitType
 }

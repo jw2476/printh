@@ -1,10 +1,11 @@
+import { Entities } from "$lib/entity/Entities";
 import { EntityType, GRID_SIZE } from "$lib/entity/Entity";
 import { TraitType } from "$lib/entity/Trait";
 import type { World } from "$lib/entity/World";
 import type { Player } from "$lib/map/Player";
 import { Packet, PacketOpcode } from "$lib/Packet";
 import type { Position } from "$lib/Position";
-import { iAmHost, players, socket } from "$lib/stores";
+import { iAmHost, socket } from "$lib/stores";
 import type { Enemy } from "$lib/traits/Hostile";
 import { Movable } from "$lib/traits/Movable";
 
@@ -16,11 +17,22 @@ function sleep(ms: number): Promise<null> {
 export type InitiateCombatPacketData = {
     gridOrigin: Position
 }
+
+export type AttackPacketData = {
+    attacker: number,
+    attacked: number,
+    attack: Attack,
+    attackPower: number
+}
+
+export enum Attack {
+    BASIC_ATTACK = "basicAttack"
+}
 export class Combat {
     world: World
 
-    enemies: Enemy[] = []
-    players: Player[] = []
+    enemies = new Entities<Enemy>()
+    players = new Entities<Player>()
 
     constructor(world: World, gridOrigin: Position) {
         this.world = world
@@ -30,8 +42,8 @@ export class Combat {
             y: gridOrigin.y + GRID_SIZE
         })
 
-        this.enemies = entitiesInGrid.filter(e => e.hasTrait(TraitType.HOSTILE)) as Enemy[]
-        this.players = entitiesInGrid.filter(e => e.type === EntityType.PLAYER) as Player[]
+        this.enemies = entitiesInGrid.filter(e => e.hasTrait(TraitType.HOSTILE)) as Entities<Enemy>
+        this.players = entitiesInGrid.filter(e => e.type === EntityType.PLAYER) as Entities<Player>
 
         if (iAmHost()) {
             // Set all involved entities in combat
@@ -61,6 +73,21 @@ export class Combat {
                     y: gridOrigin.y + ((GRID_SIZE / (this.players.length + 1)) * (i + 1)) - (p.size.y / 2)
                 }
                 Movable.move(p, moveTo)
+            })
+
+            socket.on(PacketOpcode.ATTACK, (data: AttackPacketData) => {
+                const attacker = this.players.find(p => p.id === data.attacker)
+                const attacked = this.enemies.find(e => e.id === data.attacked)
+
+                if (!attacked || !attacker) return
+
+                switch (data.attack) {
+                    case(Attack.BASIC_ATTACK): {
+                        console.log("From: " + attacked.health)
+                        attacked.health -= 10 * data.attackPower
+                        console.log("To: " + attacked.health)
+                    }
+                }
             })
         }
     }

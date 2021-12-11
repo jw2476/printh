@@ -21,6 +21,8 @@ export abstract class Entity<T> {
     type: EntityType
 
     traits: Array<Trait<Entity<T>>> = []
+    
+    dead = false
 
     constructor(world: World, data: T, type: EntityType, id?: number) {
         this.world = world

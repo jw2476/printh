@@ -6,6 +6,7 @@ import type { DisplayableEntity } from "./Displayable";
 type EnemyData = {
     combat?: Combat,
     pos: Position,
+    health: number
 }
 
 export type Enemy = EnemyData & DisplayableEntity // Force all Hostile entities to have a sprite, size, etc
@@ -18,6 +19,12 @@ export class Hostile extends Trait<Enemy> {
     }
 
     update(): void {
+        if (this.entity.health <= 0) {
+            this.entity.world.remove(this.entity)
+        }
+    }   
+    
+    cleanup(): void {
         return
-    }    
+    }
 }

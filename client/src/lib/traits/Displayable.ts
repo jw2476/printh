@@ -22,4 +22,7 @@ export class Displayable extends Trait<DisplayableEntity> {
         return
     }
     
+    cleanup(): void {
+        this.entity.world.app.stage.removeChild(this.entity.sprite)
+    }
 }

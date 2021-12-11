@@ -18,6 +18,7 @@ export class Slime extends Entity<SlimeData> {
     pos: Position
     sprite = Sprite.from("/favicon.png")
     size = {x: 1, y: 1}
+    health = 10
 
     frame = 0
 
